@@ -1,0 +1,20 @@
+{
+  "idbono": 0,
+  "idbonista": 0,
+  "valnominal": 5000.0,
+  "valcomercial": 5000.0,
+  "moneda": "soles",
+  "anios": 25,
+  "frecpago": 360,
+  "capitalizacion": 1,
+  "tipotasa": "nominal",
+  "tasainteres": 0.0346875,
+  "tasadescuento": 0.03352461491996376,
+  "imprenta": 0.05,
+  "fecemision": "2017-06-15",
+  "percprima": 0.01,
+  "percflotacion": 0.0045,
+  "percestructuracion": 0.01,
+  "perccolocacion": 0.0025,
+  "perccavali": 0.005
+}

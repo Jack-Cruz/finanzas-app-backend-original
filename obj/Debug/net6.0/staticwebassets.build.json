@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "7tqjHP2zHt7N8mlJOfG/cfSTuVYKpCU3SN+V/16+5cc=",
+  "Source": "finanzas-backend-app",
+  "BasePath": "_content/finanzas-backend-app",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

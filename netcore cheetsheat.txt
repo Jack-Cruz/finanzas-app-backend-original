@@ -1,0 +1,23 @@
+Commands
+========
+dotnet --list-sdks
+dotnet add package [packagename] 
+dotnet build
+dotnet tool install -g [toolname]
+dotnet run --urls=https://localhost:5101
+httprepl https://localhost:5101
+// migrations
+dotnet ef migrations add secondbd --context EasyFinanzasContext
+dotnet ef database update --context EasyFinanzasContext
+
+Packages and tools
+==================
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.Sqlite
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.dotnet-httprepl (tool)
+- dotnet-ef (tool)
+
+Database
+========
+"Server = Desktop-Jack; Database = LetSkoleDb2; Integrated Security = true;"
