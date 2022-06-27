@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using finanzas_backend_app.Data;
 
@@ -15,63 +16,69 @@ namespace finanzas_backend_app.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("finanzas_backend_app.Models.Bonista", b =>
                 {
                     b.Property<int>("idbonista")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idbonista"), 1L, 1);
 
                     b.Property<string>("DNI")
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("RUC")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("celular")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("contrasenia")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("correo")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("direccion")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("distrito")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("provincia")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("region")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("usuario")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("idbonista");
 
@@ -82,58 +89,60 @@ namespace finanzas_backend_app.Migrations
                 {
                     b.Property<int>("idbono")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idbono"), 1L, 1);
 
                     b.Property<int>("anios")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("capitalizacion")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("fecemision")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("frecpago")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("idbonista")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<double>("imprenta")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<string>("moneda")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("perccavali")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("perccolocacion")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("percestructuracion")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("percflotacion")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("percprima")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("tasadescuento")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("tasainteres")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<string>("tipotasa")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("valcomercial")
-                        .HasColumnType("REAL");
+                        .HasColumnType("real");
 
                     b.Property<double>("valnominal")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.HasKey("idbono");
 
@@ -144,43 +153,45 @@ namespace finanzas_backend_app.Migrations
                 {
                     b.Property<int>("idresumen")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idresumen"), 1L, 1);
 
                     b.Property<double>("TCEAemisor")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("TCEAemisorescudo")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("TREAbonista")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("convexidad")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("duracion")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("duracionmod")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<int>("idbono")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("moneda")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("precio")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("tirbonista")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("total")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("utilidad_perdida")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.HasKey("idresumen");
 
@@ -191,49 +202,51 @@ namespace finanzas_backend_app.Migrations
                 {
                     b.Property<int>("idflujo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idflujo"), 1L, 1);
 
                     b.Property<double>("amortizacion")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("bono")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("convexidad")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("cuota")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("escudo")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("faplazo")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("flujoactual")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("flujobonista")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("flujoemisor")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<double>("flujoemisorescudo")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<int>("idbono")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<double>("interes")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<int>("n")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<double>("prima")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.HasKey("idflujo");
 

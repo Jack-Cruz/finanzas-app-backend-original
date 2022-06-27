@@ -1,11 +1,12 @@
 using finanzas_backend_app.Data;
 using finanzas_backend_app.Services;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSqlite<EasyFinanzasContext>("Data Source=EasyFinanzas.db");
+//builder.Services.AddSqlite<EasyFinanzasContext>("Data Source=EasyFinanzas.db");
 // Add the EasyFinanzas context
-// builder.Services.AddDbContext<EasyFinanzasContext>(options => options.UseSqlServer("Server = Desktop-Jack; Database = LetSkoleDb2; Integrated Security = true;"));
+builder.Services.AddDbContext<EasyFinanzasContext>();
 
 // Add services to the container.
 
@@ -46,9 +47,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Add the createDbIfNotExists method call to the pipeline.
-app.CreateDbIfNotExists();
+//app.CreateDbIfNotExists();
 
 app.Run();

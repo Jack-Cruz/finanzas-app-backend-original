@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ta4S56ycAE8FFI7HANdLy3E0SzYTlgn1jfCgEjpJRF7mmdTw40ebdOfwJmRy3onKn7XEIvteECSC5s3P6+KPsQ==",
+  "dgSpecHash": "sKANfT3lMNRn9wJD1m1oh7NqcregVW9RiFbkVuUf4eXTt580Rf7ViQdbXVPx5RYpytiskgGAPXup3EBvEJKY+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\finanzas-backend-app.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app-original\\finanzas-backend-app.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\excelfinancialfunctions\\3.2.0\\excelfinancialfunctions.3.2.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\fsharp.core\\6.0.4\\fsharp.core.6.0.4.nupkg.sha512",

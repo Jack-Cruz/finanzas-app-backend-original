@@ -6,8 +6,18 @@ namespace finanzas_backend_app.Data
 {
     public class EasyFinanzasContext : DbContext
     {
-        public EasyFinanzasContext(DbContextOptions<EasyFinanzasContext> options)
-        : base(options) {}
+        protected readonly IConfiguration Configuration;
+
+        public EasyFinanzasContext(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            // connect to sql server with connection string from app settings
+            options.UseSqlServer(Configuration.GetConnectionString("WebApiDatabase"));
+        }
         
         public DbSet<Bono> Bonos => Set<Bono>();
         public DbSet<Bonista> Bonistas => Set<Bonista>();
