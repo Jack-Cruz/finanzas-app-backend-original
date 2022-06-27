@@ -167,7 +167,13 @@ namespace finanzas_backend_app.Migrations
                     b.Property<int>("idbono")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("moneda")
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("tirbonista")
                         .HasColumnType("REAL");
 
                     b.Property<double>("total")

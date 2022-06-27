@@ -17,11 +17,6 @@ public class FLujoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Flujo>>> GetAll()
-    {
-        return await _flujoService.GetAll();
-    }
-    [HttpGet]
     [Route("{idbono}")]
     public async Task<ActionResult<List<Flujo>>> GetFlujosByBono(int idbono){
         var flujos = await _flujoService.GetFlujosByBono(idbono);

@@ -16,10 +16,13 @@ namespace finanzas_backend_app.Models
         public Double TCEAemisor { get; set; } 
         public Double TCEAemisorescudo { get; set; } 
         
+        public Double tirbonista { get; set;}
         public Double TREAbonista { get; set; }
         public Double duracion { get; set; }
         public Double duracionmod { get; set; }
         public Double convexidad { get; set; }
         public Double total { get; set; }
+
+        public string? moneda { get; set;}
     }
 }

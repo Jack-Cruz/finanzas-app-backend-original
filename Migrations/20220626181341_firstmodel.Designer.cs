@@ -11,8 +11,8 @@ using finanzas_backend_app.Data;
 namespace finanzas_backend_app.Migrations
 {
     [DbContext(typeof(EasyFinanzasContext))]
-    [Migration("20220626093122_THIRDbd")]
-    partial class THIRDbd
+    [Migration("20220626181341_firstmodel")]
+    partial class firstmodel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +169,13 @@ namespace finanzas_backend_app.Migrations
                     b.Property<int>("idbono")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("moneda")
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("tirbonista")
                         .HasColumnType("REAL");
 
                     b.Property<double>("total")

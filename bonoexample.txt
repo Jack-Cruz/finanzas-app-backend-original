@@ -18,3 +18,6 @@
   "perccolocacion": 0.0025,
   "perccavali": 0.005
 }
+
+corregir orden de fecha mm//dd/yyyy
+falta la flotación

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app\\finanzas-backend-app.csproj": {}
+    "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\finanzas-backend-app.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app\\finanzas-backend-app.csproj": {
+    "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\finanzas-backend-app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app\\finanzas-backend-app.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\finanzas-backend-app.csproj",
         "projectName": "finanzas-backend-app",
-        "projectPath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app\\finanzas-backend-app.csproj",
+        "projectPath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\finanzas-backend-app.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Desktop\\Proyectos grupales GitHub\\finanzas-backend-app - Copy (3)\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace finanzas_backend_app.Migrations
 {
-    public partial class initialdb : Migration
+    public partial class firstmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,12 +39,18 @@ namespace finanzas_backend_app.Migrations
                 {
                     idresumen = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TCEAemisor = table.Column<float>(type: "REAL", nullable: false),
-                    TCEAbonista = table.Column<float>(type: "REAL", nullable: false),
-                    duracion = table.Column<float>(type: "REAL", nullable: false),
-                    duracionmod = table.Column<float>(type: "REAL", nullable: false),
-                    convexidad = table.Column<float>(type: "REAL", nullable: false),
-                    total = table.Column<float>(type: "REAL", nullable: false)
+                    idbono = table.Column<int>(type: "INTEGER", nullable: false),
+                    precio = table.Column<double>(type: "REAL", nullable: false),
+                    utilidad_perdida = table.Column<double>(type: "REAL", nullable: false),
+                    TCEAemisor = table.Column<double>(type: "REAL", nullable: false),
+                    TCEAemisorescudo = table.Column<double>(type: "REAL", nullable: false),
+                    tirbonista = table.Column<double>(type: "REAL", nullable: false),
+                    TREAbonista = table.Column<double>(type: "REAL", nullable: false),
+                    duracion = table.Column<double>(type: "REAL", nullable: false),
+                    duracionmod = table.Column<double>(type: "REAL", nullable: false),
+                    convexidad = table.Column<double>(type: "REAL", nullable: false),
+                    total = table.Column<double>(type: "REAL", nullable: false),
+                    moneda = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,20 +64,22 @@ namespace finanzas_backend_app.Migrations
                     idbono = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     idbonista = table.Column<int>(type: "INTEGER", nullable: false),
-                    valnominal = table.Column<float>(type: "REAL", nullable: false),
+                    valnominal = table.Column<double>(type: "REAL", nullable: false),
                     valcomercial = table.Column<float>(type: "REAL", nullable: false),
                     moneda = table.Column<string>(type: "TEXT", nullable: true),
-                    anios = table.Column<int>(type: "INTEGER", nullable: true),
+                    anios = table.Column<int>(type: "INTEGER", nullable: false),
                     frecpago = table.Column<int>(type: "INTEGER", nullable: false),
+                    capitalizacion = table.Column<int>(type: "INTEGER", nullable: false),
                     tipotasa = table.Column<string>(type: "TEXT", nullable: true),
-                    tasainteres = table.Column<float>(type: "REAL", nullable: false),
-                    tasadescuento = table.Column<float>(type: "REAL", nullable: false),
-                    imprenta = table.Column<float>(type: "REAL", nullable: false),
+                    tasainteres = table.Column<double>(type: "REAL", nullable: false),
+                    tasadescuento = table.Column<double>(type: "REAL", nullable: false),
+                    imprenta = table.Column<double>(type: "REAL", nullable: false),
                     fecemision = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    percprima = table.Column<float>(type: "REAL", nullable: false),
-                    percestructuracion = table.Column<float>(type: "REAL", nullable: false),
-                    perccolocacion = table.Column<float>(type: "REAL", nullable: false),
-                    perccavali = table.Column<float>(type: "REAL", nullable: false)
+                    percprima = table.Column<double>(type: "REAL", nullable: false),
+                    percflotacion = table.Column<double>(type: "REAL", nullable: false),
+                    percestructuracion = table.Column<double>(type: "REAL", nullable: false),
+                    perccolocacion = table.Column<double>(type: "REAL", nullable: false),
+                    perccavali = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,33 +94,23 @@ namespace finanzas_backend_app.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     idbono = table.Column<int>(type: "INTEGER", nullable: false),
                     n = table.Column<int>(type: "INTEGER", nullable: false),
-                    bono = table.Column<float>(type: "REAL", nullable: false),
-                    cuota = table.Column<float>(type: "REAL", nullable: false),
-                    amortizacion = table.Column<float>(type: "REAL", nullable: false),
-                    prima = table.Column<float>(type: "REAL", nullable: false),
-                    escudo = table.Column<float>(type: "REAL", nullable: false),
-                    flujoemisor = table.Column<float>(type: "REAL", nullable: false),
-                    flujoemisorescudo = table.Column<float>(type: "REAL", nullable: false),
-                    flujobonista = table.Column<float>(type: "REAL", nullable: false),
-                    flujoactual = table.Column<float>(type: "REAL", nullable: false),
-                    faplazo = table.Column<float>(type: "REAL", nullable: false),
-                    convexidad = table.Column<float>(type: "REAL", nullable: false),
-                    Bonoidbono = table.Column<int>(type: "INTEGER", nullable: true)
+                    bono = table.Column<double>(type: "REAL", nullable: false),
+                    interes = table.Column<double>(type: "REAL", nullable: false),
+                    cuota = table.Column<double>(type: "REAL", nullable: false),
+                    amortizacion = table.Column<double>(type: "REAL", nullable: false),
+                    prima = table.Column<double>(type: "REAL", nullable: false),
+                    escudo = table.Column<double>(type: "REAL", nullable: false),
+                    flujoemisor = table.Column<double>(type: "REAL", nullable: false),
+                    flujoemisorescudo = table.Column<double>(type: "REAL", nullable: false),
+                    flujobonista = table.Column<double>(type: "REAL", nullable: false),
+                    flujoactual = table.Column<double>(type: "REAL", nullable: false),
+                    faplazo = table.Column<double>(type: "REAL", nullable: false),
+                    convexidad = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Flujos", x => x.idflujo);
-                    table.ForeignKey(
-                        name: "FK_Flujos_Bonos_Bonoidbono",
-                        column: x => x.Bonoidbono,
-                        principalTable: "Bonos",
-                        principalColumn: "idbono");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flujos_Bonoidbono",
-                table: "Flujos",
-                column: "Bonoidbono");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -124,10 +122,10 @@ namespace finanzas_backend_app.Migrations
                 name: "BonoResumenes");
 
             migrationBuilder.DropTable(
-                name: "Flujos");
+                name: "Bonos");
 
             migrationBuilder.DropTable(
-                name: "Bonos");
+                name: "Flujos");
         }
     }
 }

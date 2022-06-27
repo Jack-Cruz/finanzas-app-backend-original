@@ -12,66 +12,47 @@ public class BonoService {
         _context = context;
     }
 
-    public async Task<List<Bono>> GetAll()
+    public async Task<Bono> GetById(int idbono)
     {
-        return await _context.Bonos.ToListAsync();
+        var bono = await _context.Bonos.FindAsync(idbono);
+        if(bono is null){
+            throw new Exception("Bono no encontrado");
+        }
+        return bono;
     }
-    public async Task<Bono> GetById(int id)
+    public async Task<List<Bono>> GetAllByBonista(int idbonista)
     {
-        return await _context.Bonos.FindAsync(id);
+        List<Bono> listabonos = await _context.Bonos.Where(b => b.idbonista == idbonista).ToListAsync();
+        
+        return listabonos;
     }
-    public async Task<Bono> Create(int idbonista, Bono bono)
+    public async Task<Bono> Create(Bono bono)
     {
-        bono.idbonista = idbonista;
-
         _context.Bonos.Add(bono);
         await _context.SaveChangesAsync();
         return bono;
     }
-    public async Task<Bono> Update(int idbono, Bono bono)
+    public async Task<Bono> Update(Bono bono)
     {
-        var bonoActual = await _context.Bonos.FindAsync(idbono);
-        if(bonoActual is null)
-        {
-            throw new Exception("Bono no encontrado");
-        }
         _context.Bonos.Update(bono);
         await _context.SaveChangesAsync();
         return bono;
     }
-    public async Task<Bono> Delete(int id)
+    public async Task<Bono> Delete(Bono bono)
     {
-        var bono = await _context.Bonos.FindAsync(id);
         _context.Bonos.Remove(bono);
         await _context.SaveChangesAsync();
         return bono;
     }
-    // public async Task AddBonosByBonista(int idbonista, int idbono)
-    // {
-    //     var bonista = await _context.Bonistas.FindAsync(idbonista);
-    //     var bono = await _context.Bonos.FindAsync(idbono);
-
-    //     await _context.SaveChangesAsync();
-    // }
-    
-    public async Task<List<Bono>> GetBonosByBonista(int idbonista)
+    public async Task<bool> hasBono(int idbono, int idbonista)
     {
-        
-        List<Bono> listabonos = _context.Bonos.Where(b => b.idbonista == idbonista).ToList();
-
-        return listabonos;
-    }
-    
-    public async Task RemoveBonosByBonista(int idbonista, int idbono)
-    {
-        var bonista = await _context.Bonistas.FindAsync(idbonista);
         var bono = await _context.Bonos.FindAsync(idbono);
-
-        if( bonista is null || bono is null)
-        {
-            throw new Exception("Bonista o Bono no encontrado");
+        if(bono is null){
+            throw new Exception("Bono no encontrado");
         }
-        
-        await _context.SaveChangesAsync();
+        if(bono.idbonista == idbonista){
+            return true;
+        }
+        return false;
     }
 }

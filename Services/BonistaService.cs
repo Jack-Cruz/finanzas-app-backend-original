@@ -12,15 +12,15 @@ public class BonistaService
     {
         _context = context;
     }
-    public async Task<List<Bonista>> GetAll()
+    
+    public async Task<Bonista> GetById(int idbonista)
     {
-        return await _context.Bonistas.ToListAsync();
+        var bonista = await _context.Bonistas.FindAsync(idbonista); 
+        if(bonista is null){
+            throw new Exception("Bonista no encontrado");
+        }
+        return bonista;
     }
-    public async Task<Bonista> GetById(int id)
-    {
-        return await _context.Bonistas.FindAsync(id);
-    }
-
     public async Task<Bonista> Create(Bonista bonista)
     {
         _context.Bonistas.Add(bonista);
@@ -33,11 +33,20 @@ public class BonistaService
         await _context.SaveChangesAsync();
         return bonista;
     }
-    public async Task<Bonista> Delete(int id)
+    public async Task<Bonista> Delete(Bonista bonista)
     {
-        var bonista = await _context.Bonistas.FindAsync(id);
         _context.Bonistas.Remove(bonista);
         await _context.SaveChangesAsync();
+        return bonista;
+    }
+
+    public async Task<Bonista> Validate(string username, string password)
+    {
+        var bonista = await _context.Bonistas.FirstOrDefaultAsync(b => b.usuario == username && b.contrasenia == password);
+        if(bonista is null)
+        {
+            throw new Exception("Usuario o contraseña incorrectos");
+        }
         return bonista;
     }
 }

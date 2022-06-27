@@ -1,5 +1,6 @@
 Commands
 ========
+dotnet run
 dotnet --list-sdks
 dotnet add package [packagename] 
 dotnet build
@@ -7,7 +8,7 @@ dotnet tool install -g [toolname]
 dotnet run --urls=https://localhost:5101
 httprepl https://localhost:5101
 // migrations
-dotnet ef migrations add secondbd --context EasyFinanzasContext
+dotnet ef migrations add firstmodel --context EasyFinanzasContext
 dotnet ef database update --context EasyFinanzasContext
 
 Packages and tools

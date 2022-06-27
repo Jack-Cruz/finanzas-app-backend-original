@@ -15,22 +15,14 @@ public class BonistaController : ControllerBase
         _bonistaService = bonistaService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Bonista>>> GetAll()
-    {
-        return await _bonistaService.GetAll();
-    }
-
     [HttpGet("{id}")]
     public async Task<ActionResult<Bonista>> GetById(int id)
     {
         var bonista = await _bonistaService.GetById(id);
-        if(bonista is not null){
-            return bonista;
-        }
-        else{
+        if(bonista is null){
             return NotFound();
         }
+        return bonista;
     }
 
     [HttpPost]
@@ -44,26 +36,35 @@ public class BonistaController : ControllerBase
     public async Task<IActionResult> Update(int idbonista, Bonista bonista)
     {
         var bonistaActual = await _bonistaService.GetById(idbonista);
-        if(bonistaActual is not null){
-            bonista.idbonista = idbonista;
-            await _bonistaService.Update(bonista);
-            return NoContent();
-        }
-        else{
+        if(bonistaActual is null){
             return NotFound();
         }
-    }
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var bonista = await _bonistaService.GetById(id);
-        if(bonista is not null){
-            await _bonistaService.Delete(id);
-            return NoContent();
-        }
-        else{
-            return NotFound();
-        }
+
+        bonista.idbonista = idbonista;
+        await _bonistaService.Update(bonista);
+        return CreatedAtAction("GetById", new {id = bonista!.idbonista}, bonista);
     }
 
+    [HttpGet("credential/{username}/{password}")]
+    public async Task<IActionResult> Credential(string username, string password)
+    {
+        var bonista = await _bonistaService.Validate(username, password);
+        if(bonista is null){
+            return BadRequest();
+        }
+        
+        return CreatedAtAction("GetById", new {id = bonista!.idbonista}, bonista);
+    }
+    
+//     [HttpDelete("{id}")]
+//     public async Task<IActionResult> Delete(int id)
+//     {
+//         var bonista = await _bonistaService.GetById(id);
+//         if(bonista is null)
+//         {
+//             return NotFound();
+//         }
+        
+//         await _bonistaService.Delete(bonista);
+//     }
 }

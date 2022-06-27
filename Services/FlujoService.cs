@@ -10,64 +10,35 @@ public class FlujoService {
     {
         _context = context;
     }
-    public async Task<List<Flujo>> GetAll()
+        
+    public async Task<List<Flujo>> GetFlujosByBono(int idbono)
     {
-        return await _context.Flujos.ToListAsync();
+        List<Flujo> listaflujos = await _context.Flujos.Where(f => f.idbono == idbono).ToListAsync();
+
+        return listaflujos;
     }
-    
     public async Task<Flujo> Create(Flujo flujo)
     {
         _context.Flujos.Add(flujo);
         await _context.SaveChangesAsync();
         return flujo;
     }
-    public async Task<Flujo> Update(int idflujo, Flujo flujo)
+    public async Task<Flujo> Update(Flujo flujo)
     {
-        var flujoActual = await _context.Flujos.FindAsync(idflujo);
-        if(flujoActual is null)
-        {
-            throw new Exception("Flujo no encontrado");
-        }
         _context.Flujos.Update(flujo);
         await _context.SaveChangesAsync();
         return flujo;
     }
-    public async Task<Flujo> Delete(int id)
+    public async Task<Flujo> Delete(Flujo flujo)
     {
-        var flujo = await _context.Flujos.FindAsync(id);
         _context.Flujos.Remove(flujo);
         await _context.SaveChangesAsync();
         return flujo;
     }
-
-    public async Task AddFlujosByBono(int idbono, int idflujo)
+    public async Task DeleteByBono(int idbono)
     {
-        var bono = await _context.Bonos.FindAsync(idbono);
-        var flujo = await _context.Flujos.FindAsync(idflujo);
-        if(bono is null || flujo is null)
-        {
-            throw new Exception("Bono o Flujo no encontrado");
-        }
-        // bono.flujos.Add(flujo);
+        var flujos = await GetFlujosByBono(idbono);
+        flujos.ForEach(flujo => _context.Flujos.Remove(flujo));
         await _context.SaveChangesAsync();
     }
-       
-    public async Task<List<Flujo>> GetFlujosByBono(int idbono)
-    {
-        List<Flujo> listaflujos = _context.Flujos.Where(f => f.idbono == idbono).ToList();
-
-        return listaflujos;
-    }
-    
-    public async Task RemoveFlujosByBono(int bono, int idflujo)
-    {
-        var bonoActual = await _context.Bonos.FindAsync(bono);
-        var flujoActual = await _context.Flujos.FindAsync(idflujo);
-        if(bonoActual is null || flujoActual is null)
-        {
-            throw new Exception("Bono o Flujo no encontrado");
-        }
-        // bonoActual.flujos.Remove(flujoActual);
-    }
-
 }

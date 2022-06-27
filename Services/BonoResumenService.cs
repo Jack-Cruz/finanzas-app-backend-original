@@ -11,13 +11,20 @@ public class BonoResumenService {
     {
         _context = context;
     }
+    
+    public async Task<BonoResumen> GetByBono(int idbono)
+    {
+        var bonoresumen =  await _context.BonoResumenes.SingleOrDefaultAsync(b => b.idbono == idbono);
+        if(bonoresumen is null){
+            throw new Exception("Bono no encontrado");
+        }
+        return bonoresumen;
+    }
+    
     public async Task<List<BonoResumen>> GetAll()
     {
-        return await _context.BonoResumenes.ToListAsync();
-    }
-    public async Task<BonoResumen> GetById(int id)
-    {
-        return await _context.BonoResumenes.FindAsync(id);
+        var bonoresumen = await _context.BonoResumenes.ToListAsync();
+        return bonoresumen;
     }
     public async Task<BonoResumen> Create(BonoResumen bonoResumen)
     {
@@ -25,22 +32,20 @@ public class BonoResumenService {
         await _context.SaveChangesAsync();
         return bonoResumen;
     }
-    public async Task<BonoResumen> Update(int idbonoResumen, BonoResumen bonoResumen)
+    public async Task<BonoResumen> Update(BonoResumen bonoResumen)
     {
-        var bonoResumenActual = await _context.BonoResumenes.FindAsync(idbonoResumen);
-        if(bonoResumenActual is null)
-        {
-            throw new Exception("BonoResumen no encontrado");
-        }
         _context.BonoResumenes.Update(bonoResumen);
         await _context.SaveChangesAsync();
         return bonoResumen;
     }
-    public async Task<BonoResumen> Delete(int id)
+    public async Task<BonoResumen> Delete(int idbono)
     {
-        var bonoResumen = await _context.BonoResumenes.FindAsync(id);
-        _context.BonoResumenes.Remove(bonoResumen);
+        var bonoresumen =  await _context.BonoResumenes.SingleOrDefaultAsync(b => b.idbono == idbono);
+        if(bonoresumen is null){
+            throw new Exception("Bono no encontrado");
+        }
+        _context.BonoResumenes.Remove(bonoresumen);
         await _context.SaveChangesAsync();
-        return bonoResumen;
+        return bonoresumen;
     }
 }
